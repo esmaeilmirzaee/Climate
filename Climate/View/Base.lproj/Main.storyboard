@@ -120,6 +120,9 @@
                                             <color key="titleColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="getWeatherPressed:" destination="P1Y-dL-zMM" eventType="touchUpInside" id="che-rU-XP5"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvW-e3-7QL" userLabel="Back Button">
                                         <rect key="frame" x="16" y="28" width="32" height="32"/>
@@ -130,6 +133,9 @@
                                         <state key="normal" image="left">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="P1Y-dL-zMM" eventType="touchUpInside" id="lIq-fk-TNZ"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0F0-ob-gbM" userLabel="City Name Text Field">
                                         <rect key="frame" x="93" y="141" width="189" height="30"/>
@@ -163,6 +169,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SGE-7i-E75"/>
+                    <connections>
+                        <outlet property="changeCityTextField" destination="0F0-ob-gbM" id="hbk-Mp-B9w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wa8-oH-wtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
