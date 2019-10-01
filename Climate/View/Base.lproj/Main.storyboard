@@ -87,6 +87,11 @@
                             <constraint firstAttribute="trailing" secondItem="VNR-V6-HMc" secondAttribute="trailing" id="nWN-M1-3ds"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="Ssc-Cu-XmK" id="Etw-ow-0SD"/>
+                        <outlet property="temperatureLabel" destination="AT7-It-Fyf" id="sF1-dk-dcz"/>
+                        <outlet property="weatherIcon" destination="C11-fU-d6q" id="NNk-7X-kCA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
