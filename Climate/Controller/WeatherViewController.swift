@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
   let APP_ID = "894f130231441d5e5b0c37596bc79c58"
   
   let locationManager = CLLocationManager() //2
+  let weatherDataModel = WeatherDataModel() // 7
   
   // Pre-linked IBOutlets
   @IBOutlet weak var temperatureLabel: UILabel!
@@ -41,6 +42,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
       response in
       if response.result.isSuccess {
         print("Success! Got the weather data.")
+        
+        if let weatherJSON = response.result.value {
+          print(weatherJSON)
+          self.updateWeatherData(json: JSON(weatherJSON))
+        }
       } else {
         print("Error: \(response.result.error)")
         self.cityLabel.text = "Connection issue 😔"
@@ -48,14 +54,25 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
   }
   
-  //MARK - JSON Parsing
-  func updateWeatherData() {
-    
+  //MARK 7 - JSON Parsing
+  func updateWeatherData(json: JSON) {
+    if let weatherData = json["main"]["temp"].double {
+      weatherDataModel.temperature = Int(weatherData - 273.15)
+      weatherDataModel.city = json["name"].stringValue + "-" + json["sys"]["country"].stringValue
+      weatherDataModel.condition = Int(json["weather"]["id"].intValue)
+      weatherDataModel.weatherIconName = weatherDataModel.weatherIcon(condition: weatherDataModel.condition)
+      updateUIWithWeatherData()
+    } else {
+      cityLabel.text = "Weather's unavilable"
+    }
   }
   
   //MARK - UI Updates
   func updateUIWithWeatherData() {
-  
+    cityLabel.text = weatherDataModel.city
+    temperatureLabel.text = "\(weatherDataModel.temperature)º"
+    weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+    
   }
   
   //MARK 5 - Location Manager Delegate Method
@@ -65,7 +82,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
       locationManager.stopUpdatingLocation()
       print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
       
-      let params: [String: String] = ["longitude": "\(location.coordinate.longitude)", "latitude": String(location.coordinate.latitude), "appid": APP_ID]
+      let params: [String: String] = ["lat": String(location.coordinate.latitude), "lon": "\(location.coordinate.longitude)",  "appid": APP_ID]
       
       getWeatherData(url: WEATHER_URL, parameters: params)
     }
@@ -77,6 +94,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     cityLabel.text = "Location's Unavailable"
   }
   
+  @IBAction func goToChangeCityViewControllerButtonPressed(_ sender: UIButton) {
+    performSegue(withIdentifier: "goToChangeCityViewController-", sender: self)
+  }
   //MARK - Change City Delegate Methods
   // userEnteredANewCityName delegate method
   // prepareForSegure method
