@@ -94,7 +94,7 @@
                         <outlet property="cityLabel" destination="Ssc-Cu-XmK" id="Etw-ow-0SD"/>
                         <outlet property="temperatureLabel" destination="AT7-It-Fyf" id="sF1-dk-dcz"/>
                         <outlet property="weatherIcon" destination="C11-fU-d6q" id="NNk-7X-kCA"/>
-                        <segue destination="P1Y-dL-zMM" kind="show" identifier="goToChangeCityViewController" id="qN6-fv-ESZ"/>
+                        <segue destination="P1Y-dL-zMM" kind="show" identifier="changeCityName" id="qN6-fv-ESZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
