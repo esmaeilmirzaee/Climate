@@ -5,7 +5,7 @@
 //  Created by Esmaeil MIRZAEE on 2019-10-03.
 //  Copyright © 2019 Esmaeil MIRZAEE. All rights reserved.
 //
-import UISwift
+
 import UIKit
 // 7
 class WeatherDataModel {
